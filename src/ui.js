@@ -28,8 +28,41 @@ class UI {
           </div>
         `;
       });
-  
       this.post.innerHTML = output;
+    }
+
+    clearFields() {
+        this.titleInput.value = "";
+        this.bodyInput.value = "";
+    }
+
+    showAlert(msg, className) {
+        this.clearAlert();
+
+        // Create div
+        const div = document.createElement("div");
+        // Add classes
+        div.className = className;
+        // Add text message
+        div.appendChild(document.createTextNode(msg));
+        // get parrent
+        const container = document.querySelector(".postsContainer");
+        // Insert alert div
+        container.insertBefore(div, this.post);
+
+        // Timeout
+        setTimeout(() => {
+            this.clearAlert();
+        }, 3000);
+
+    }
+
+    clearAlert() {
+        const currentAlert = document.querySelector(".alert");
+
+        if(currentAlert) {
+            currentAlert.remove();
+        }
     }
 }
 
